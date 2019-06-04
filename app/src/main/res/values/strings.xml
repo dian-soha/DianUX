@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DianUX</string>
+    <string name="sort_by">Sort by %1$s</string>
+    <string name="submit">Submit</string>
+    <string name="input">Input</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="backup">Backup</string>
 </resources>

@@ -1,0 +1,24 @@
+<resources>
+
+    <array name="sort_store">
+        <item>Title</item>
+        <item>Author</item>
+        <item>Status</item>
+
+    </array>
+
+
+    <array name="items_per_page">
+        <item>20 items</item>
+        <item>50 items</item>
+        <item>100 items</item>
+    </array>
+
+    <array name="lines_per_page">
+        <item>200 lines</item>
+        <item>500 lines</item>
+        <item>1000 lines</item>
+    </array>
+
+
+</resources>

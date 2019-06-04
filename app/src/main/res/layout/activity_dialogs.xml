@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context=".DialogsActivity">
+
+
+
+    <TextView
+        android:id="@+id/textView_dialogs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="text" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="?android:attr/listDivider" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+
+    <Button
+            android:id="@+id/alert_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alert Dialog" />
+
+        <Button
+            android:id="@+id/input_dialog_with_counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Input Dialog with counter" />
+
+        <Button
+            android:id="@+id/input_dialog_without_counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Input Dialog without counter" />
+
+        <Button
+            android:id="@+id/edit_dialog_with_counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Dialog with counter" />
+
+        <Button
+            android:id="@+id/edit_dialog_without_counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Dialog without counter" />
+
+</LinearLayout>
