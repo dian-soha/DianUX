@@ -11,15 +11,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import org.apache.commons.io.FileUtils;
+
+import java.io.IOException;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private MainActivity mainActivity;
     public static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mainActivity = this;
+
 
 
 
@@ -31,12 +37,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button dialogs = findViewById(R.id.dialogs);
         dialogs.setOnClickListener(this);
 
-
-
-
-
+        Button database_viewer = findViewById(R.id.database_viewer);
+        database_viewer.setOnClickListener(this);
 
     }
+
+
+
 
 
     @Override
@@ -46,12 +53,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.dialogs:
 
-                Intent intent = new Intent(this, DialogsActivity.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(this, DialogsActivity.class);
+                startActivity(intent1);
                 finish();
 
                 break;
 
+            case R.id.database_viewer:
+
+                Intent intent2 = new Intent(this, StoreActivity.class);
+                startActivity(intent2);
+                finish();
+
+                break;
 
 
             default:

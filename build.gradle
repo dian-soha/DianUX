@@ -1,27 +1,46 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+
 buildscript {
+
+    ext.java_version = JavaVersion.VERSION_1_8
+
+
     repositories {
+        mavenLocal()
         google()
         jcenter()
-        
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.1'
-        
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.google.gms:google-services:4.2.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.1'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.31'
+        classpath 'io.fabric.tools:gradle:1.29.0'
+        classpath 'com.google.firebase:perf-plugin:1.2.1'  // Performance Monitoring plugin
     }
 }
 
 allprojects {
     repositories {
+        mavenLocal()
         google()
         jcenter()
-        
+
+        maven { url 'https://maven.google.com' }
+        maven { url 'https://jitpack.io' }
+        mavenLocal()
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+

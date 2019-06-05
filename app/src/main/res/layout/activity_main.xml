@@ -23,7 +23,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="10dp" />
 
     <Button
         android:id="@+id/dialogs"
@@ -31,6 +31,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Dialogs" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <Button
+        android:id="@+id/database_viewer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Database Viewer" />
 
 
 </LinearLayout>
