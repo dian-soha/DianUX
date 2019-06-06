@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
     tools:context=".DialogsActivity">
-
 
 
     <TextView
@@ -23,39 +23,95 @@
         android:layout_marginTop="24dp"
         android:background="?android:attr/listDivider" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="InputDialog with counter"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
-            android:id="@+id/alert_dialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Alert Dialog" />
+        android:id="@+id/input_dialog_with_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Input your name" />
 
-        <Button
-            android:id="@+id/input_dialog_with_counter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Input Dialog with counter" />
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="InputDialog without counter"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/input_dialog_without_counter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Input Dialog without counter" />
+    <Button
+        android:id="@+id/input_dialog_without_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Input your opinion about Ux design" />
 
-        <Button
-            android:id="@+id/edit_dialog_with_counter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit Dialog with counter" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EditDialog with counter"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/edit_dialog_without_counter"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/imageButton_edit1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Dialog without counter" />
+            app:srcCompat="@drawable/ic_edit" />
+
+        <TextView
+            android:id="@+id/textView_with_counter1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="Old Text" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="EditDialog without counter"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="198dp"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/imageButton_edit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_edit" />
+
+        <TextView
+            android:id="@+id/textView_with_counter2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:text="Old Text" />
+    </LinearLayout>
+
 
 </LinearLayout>

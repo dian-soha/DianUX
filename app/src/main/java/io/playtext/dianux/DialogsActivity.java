@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,8 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
     private int min_count = 2;
     private int max_count = 10;
     private int max_line = 5;
-    private String sDefault = "Old text";
-    private String stHint = "Write here";
+
+    TextView textView_with_counter1, textView_with_counter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +48,26 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
         hello_world.setTextSize(20);
 
 
-        Button alert_dialog = findViewById(R.id.alert_dialog);
-        alert_dialog.setOnClickListener(this);
-
         Button input_dialog_with_counter = findViewById(R.id.input_dialog_with_counter);
         input_dialog_with_counter.setOnClickListener(this);
 
         Button input_dialog_without_counter = findViewById(R.id.input_dialog_without_counter);
         input_dialog_without_counter.setOnClickListener(this);
 
-        Button edit_dialog_with_counter = findViewById(R.id.edit_dialog_with_counter);
-        edit_dialog_with_counter.setOnClickListener(this);
+        ImageButton edit_dialog_with_counter1 = findViewById(R.id.imageButton_edit1);
+        edit_dialog_with_counter1.setOnClickListener(this);
 
-        Button edit_dialog_without_counter = findViewById(R.id.edit_dialog_without_counter);
-        edit_dialog_without_counter.setOnClickListener(this);
+        textView_with_counter1 = findViewById(R.id.textView_with_counter1);
+        textView_with_counter1.setText("Jon Smith");
+
+
+        ImageButton edit_dialog_with_counter2 = findViewById(R.id.imageButton_edit2);
+        edit_dialog_with_counter2.setOnClickListener(this);
+
+        textView_with_counter2 = findViewById(R.id.textView_with_counter2);
+        textView_with_counter2.setText("User experience (UX) design is the process of creating products that provide meaningful and relevant experiences to users. This involves the design of the entire process of acquiring and integrating the product, including aspects of branding, design, usability, and function.");
+        textView_with_counter2.setMovementMethod(new ScrollingMovementMethod());
+
 
     }
 
@@ -69,37 +77,12 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
 
         switch (v.getId()) {
 
-            case R.id.alert_dialog:
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(dialogsActivity);
-                builder.setIcon(R.drawable.ic_cloud_upload);
-                builder.setTitle(R.string.backup);
-                builder.setMessage("Compress and backup My Library to Google Drive App Folder...");
-                builder.setPositiveButton(getResources().getText(R.string.backup), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.i(TAG, "PositiveButton");
-
-                    }
-                });
-                builder.setNegativeButton(getResources().getText(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.i(TAG, "NegativeButton");
-
-                    }
-                });
-
-                builder.create();
-                builder.show();
-                break;
-
             case R.id.input_dialog_with_counter:
 
                 AlertDialog input_dialog_with_counter = new AlertDialog.Builder(this)
                         .setIcon(R.drawable.ic_input)
                         .setTitle(R.string.input)
-                        .setMessage("Minimum " + min_count + " and maximum " + max_count + " characters.")
+                        .setMessage("What's your name? \nMinimum " + min_count + " and maximum " + max_count + " characters.")
                         .setCancelable(false)
                         .setPositiveButton(R.string.submit, null) //Set to null. We override the onclick
                         .setNegativeButton(R.string.cancel, null)
@@ -113,7 +96,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                 params1.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_right_margin);
 
                 final EditText inputText1 = new EditText(this);
-                inputText1.setHint(stHint);
+                inputText1.setHint("Input your name");
 
                 inputText1.setSingleLine();
                 inputText1.setLayoutParams(params1);
@@ -135,15 +118,16 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                     public void onShow(final DialogInterface dialog) {
                         Log.i(TAG, "onShow: show");
                         final Button button_pos = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                        final int defaultColor = inputText1.getTextColors().getDefaultColor();
 
                         if (inputText1.getText().length() >= min_count && inputText1.getText().length() <= max_count) {
                             button_pos.setVisibility(View.VISIBLE);
                         } else {
                             button_pos.setVisibility(View.INVISIBLE);
                             counter1.setTextColor(Color.RED);
+                            inputText1.setTextColor(Color.RED);
                         }
 
-                        final int defaultColor = inputText1.getTextColors().getDefaultColor();
                         inputText1.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -180,8 +164,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                                 String mValue = inputText1.getText().toString();
                                 Log.i(TAG, "onShow button_pos onClick: mValue: " + mValue);
 
-                                Toast.makeText(dialogsActivity, mValue, Toast.LENGTH_SHORT).show();
-
+                                Toast.makeText(dialogsActivity, "My name is: " + mValue, Toast.LENGTH_SHORT).show();
 
                                 dialog.dismiss();
                             }
@@ -198,7 +181,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                 AlertDialog input_dialog_without_counter = new AlertDialog.Builder(this)
                         .setIcon(R.drawable.ic_input)
                         .setTitle(R.string.input)
-                        .setMessage("Unlimited characters.")
+                        .setMessage("What's your opinion about ...\nUnlimited characters.")
                         .setCancelable(false)
                         .setPositiveButton(R.string.submit, null) //Set to null. We override the onclick
                         .setNegativeButton(R.string.cancel, null)
@@ -212,7 +195,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                 params2.rightMargin = getResources().getDimensionPixelSize(R.dimen.dialog_right_margin);
 
                 final EditText inputText2 = new EditText(this);
-                inputText2.setHint(stHint);
+                inputText2.setHint("Input your opinion");
                 inputText2.setMaxLines(max_line);
                 inputText2.setLayoutParams(params2);
                 inputText2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -233,7 +216,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                                 String mValue = inputText2.getText().toString();
                                 Log.i(TAG, "onShow button_pos onClick: mValue: " + mValue);
 
-                                Toast.makeText(dialogsActivity, mValue, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(dialogsActivity, "Your opinion about ... is:\n" + mValue, Toast.LENGTH_SHORT).show();
 
                                 dialog.dismiss();
                             }
@@ -245,7 +228,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                 input_dialog_without_counter.show();
                 break;
 
-            case R.id.edit_dialog_with_counter:
+            case R.id.imageButton_edit1:
 
                 AlertDialog edit_dialog_with_counter = new AlertDialog.Builder(this)
                         .setIcon(R.drawable.ic_edit)
@@ -265,14 +248,14 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
 
 
                 final EditText inputText3 = new EditText(this);
-                inputText3.setText(sDefault);
+                inputText3.setText(textView_with_counter1.getText());
                 inputText3.setSingleLine();
                 inputText3.setLayoutParams(params3);
                 inputText3.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
                 inputText3.setSelection(inputText3.getText().length());
 
                 final TextView counter3 = new TextView(this);
-                counter3.setText(MessageFormat.format("{0}/{1}", sDefault.length(), max_count));
+                counter3.setText(MessageFormat.format("{0}/{1}", textView_with_counter1.getText().length(), max_count));
                 counter3.setLayoutParams(params3);
                 counter3.setGravity(Gravity.END);
 
@@ -286,15 +269,16 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                     public void onShow(final DialogInterface dialog) {
                         Log.i(TAG, "onShow: show");
                         final Button button_pos = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                        final int defaultColor = inputText3.getTextColors().getDefaultColor();
 
                         if (inputText3.getText().length() >= min_count && inputText3.getText().length() <= max_count) {
                             button_pos.setVisibility(View.VISIBLE);
                         } else {
                             button_pos.setVisibility(View.INVISIBLE);
                             counter3.setTextColor(Color.RED);
+                            inputText3.setTextColor(Color.RED);
                         }
 
-                        final int defaultColor = inputText3.getTextColors().getDefaultColor();
                         inputText3.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -333,7 +317,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                                 String mValue = inputText3.getText().toString();
                                 Log.i(TAG, "onShow button_pos onClick: mValue: " + mValue);
 
-                                Toast.makeText(dialogsActivity, mValue, Toast.LENGTH_SHORT).show();
+                                textView_with_counter1.setText(mValue);
 
                                 dialog.dismiss();
                             }
@@ -345,7 +329,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                 edit_dialog_with_counter.show();
                 break;
 
-            case R.id.edit_dialog_without_counter:
+            case R.id.imageButton_edit2:
 
                 AlertDialog edit_dialog_without_counter = new AlertDialog.Builder(this)
                         .setIcon(R.drawable.ic_edit)
@@ -365,7 +349,7 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
 
 
                 final EditText inputText4 = new EditText(this);
-                inputText4.setText(sDefault);
+                inputText4.setText(textView_with_counter2.getText());
                 inputText4.setMaxLines(max_line);
                 inputText4.setLayoutParams(params4);
                 inputText4.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
@@ -386,9 +370,8 @@ public class DialogsActivity extends AppCompatActivity  implements View.OnClickL
                             public void onClick(View v) {
 
                                 String mValue = inputText4.getText().toString();
-                                Log.i(TAG, "onShow button_pos onClick: mValue: " + mValue);
 
-                                Toast.makeText(dialogsActivity, mValue, Toast.LENGTH_SHORT).show();
+                                textView_with_counter2.setText(mValue);
 
                                 dialog.dismiss();
                             }
